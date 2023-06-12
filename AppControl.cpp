@@ -179,10 +179,227 @@ void AppControl::displayMusicPlay()
 
 void AppControl::displayMeasureInit()
 {
+    mlcd.clearDisplay();
+    mlcd.fillBackgroundWhite();
+    mlcd.displayJpgImageCoordinate(MEASURE_NOTICE_IMG_PATH, MEASURE_NOTICE_X_CRD, MEASURE_NOTICE_Y_CRD);
+    displayMeasureDistance();
+    mlcd.displayJpgImageCoordinate(COMMON_BUTTON_BACK_IMG_PATH, MEASURE_BACK_X_CRD, MEASURE_BACK_Y_CRD);
 }
 
 void AppControl::displayMeasureDistance()
 {
+    int measurement_distance = mmdist.getDistance() * 10;
+    int divisor = 10;
+
+    for(int display_cnt = 1; display_cnt <= 4; display_cnt++){
+        switch(measurement_distance % divisor){
+            case 0:
+                switch(display_cnt){
+                    case 1:
+                        mlcd.displayJpgImageCoordinate(COMMON_BLUE0_IMG_PATH, MEASURE_DECIMAL_X_CRD, MEASURE_DECIMAL_Y_CRD);                    
+                    break;
+
+                    case 2:
+                        mlcd.displayJpgImageCoordinate(COMMON_BLUE0_IMG_PATH, MEASURE_DIGIT1_X_CRD, MEASURE_DIGIT1_Y_CRD); 
+                    break;
+
+                    case 3:
+                        mlcd.displayJpgImageCoordinate(COMMON_BLUE0_IMG_PATH, MEASURE_DIGIT2_X_CRD, MEASURE_DIGIT2_Y_CRD); 
+                    break;
+
+                    case 4:
+                        mlcd.displayJpgImageCoordinate(COMMON_BLUE0_IMG_PATH, MEASURE_DIGIT3_X_CRD, MEASURE_DIGIT3_Y_CRD); 
+                    break;
+                }
+
+            break;
+
+            case 1:
+                switch(display_cnt){
+                    case 1:
+                        mlcd.displayJpgImageCoordinate(COMMON_BLUE1_IMG_PATH, MEASURE_DECIMAL_X_CRD, MEASURE_DECIMAL_Y_CRD);                    
+                    break;
+
+                    case 2:
+                        mlcd.displayJpgImageCoordinate(COMMON_BLUE1_IMG_PATH, MEASURE_DIGIT1_X_CRD, MEASURE_DIGIT1_Y_CRD); 
+                    break;
+
+                    case 3:
+                        mlcd.displayJpgImageCoordinate(COMMON_BLUE1_IMG_PATH, MEASURE_DIGIT2_X_CRD, MEASURE_DIGIT2_Y_CRD); 
+                    break;
+
+                    case 4:
+                        mlcd.displayJpgImageCoordinate(COMMON_BLUE1_IMG_PATH, MEASURE_DIGIT3_X_CRD, MEASURE_DIGIT3_Y_CRD); 
+                    break;
+                }
+            break;
+
+            case 2:
+                switch(display_cnt){
+                    case 1:
+                        mlcd.displayJpgImageCoordinate(COMMON_BLUE2_IMG_PATH, MEASURE_DECIMAL_X_CRD, MEASURE_DECIMAL_Y_CRD);                    
+                    break;
+
+                    case 2:
+                        mlcd.displayJpgImageCoordinate(COMMON_BLUE2_IMG_PATH, MEASURE_DIGIT1_X_CRD, MEASURE_DIGIT1_Y_CRD); 
+                    break;
+
+                    case 3:
+                        mlcd.displayJpgImageCoordinate(COMMON_BLUE2_IMG_PATH, MEASURE_DIGIT2_X_CRD, MEASURE_DIGIT2_Y_CRD); 
+                    break;
+
+                    case 4:
+                        mlcd.displayJpgImageCoordinate(COMMON_BLUE2_IMG_PATH, MEASURE_DIGIT3_X_CRD, MEASURE_DIGIT3_Y_CRD); 
+                    break;
+                }
+            break;
+
+            case 3:
+                switch(display_cnt){
+                    case 1:
+                        mlcd.displayJpgImageCoordinate(COMMON_BLUE3_IMG_PATH, MEASURE_DECIMAL_X_CRD, MEASURE_DECIMAL_Y_CRD);                    
+                    break;
+
+                    case 2:
+                        mlcd.displayJpgImageCoordinate(COMMON_BLUE3_IMG_PATH, MEASURE_DIGIT1_X_CRD, MEASURE_DIGIT1_Y_CRD); 
+                    break;
+
+                    case 3:
+                        mlcd.displayJpgImageCoordinate(COMMON_BLUE3_IMG_PATH, MEASURE_DIGIT2_X_CRD, MEASURE_DIGIT2_Y_CRD); 
+                    break;
+
+                    case 4:
+                        mlcd.displayJpgImageCoordinate(COMMON_BLUE3_IMG_PATH, MEASURE_DIGIT3_X_CRD, MEASURE_DIGIT3_Y_CRD); 
+                    break;
+                }
+            break;
+            
+            case 4:
+                switch(display_cnt){
+                    case 1:
+                        mlcd.displayJpgImageCoordinate(COMMON_BLUE4_IMG_PATH, MEASURE_DECIMAL_X_CRD, MEASURE_DECIMAL_Y_CRD);                    
+                    break;
+
+                    case 2:
+                        mlcd.displayJpgImageCoordinate(COMMON_BLUE4_IMG_PATH, MEASURE_DIGIT1_X_CRD, MEASURE_DIGIT1_Y_CRD); 
+                    break;
+
+                    case 3:
+                        mlcd.displayJpgImageCoordinate(COMMON_BLUE4_IMG_PATH, MEASURE_DIGIT2_X_CRD, MEASURE_DIGIT2_Y_CRD); 
+                    break;
+
+                    case 4:
+                        mlcd.displayJpgImageCoordinate(COMMON_BLUE4_IMG_PATH, MEASURE_DIGIT3_X_CRD, MEASURE_DIGIT3_Y_CRD); 
+                    break;
+                }
+            break;
+
+            case 5:
+                switch(display_cnt){
+                    case 1:
+                        mlcd.displayJpgImageCoordinate(COMMON_BLUE5_IMG_PATH, MEASURE_DECIMAL_X_CRD, MEASURE_DECIMAL_Y_CRD);                    
+                    break;
+
+                    case 2:
+                        mlcd.displayJpgImageCoordinate(COMMON_BLUE5_IMG_PATH, MEASURE_DIGIT1_X_CRD, MEASURE_DIGIT1_Y_CRD); 
+                    break;
+
+                    case 3:
+                        mlcd.displayJpgImageCoordinate(COMMON_BLUE5_IMG_PATH, MEASURE_DIGIT2_X_CRD, MEASURE_DIGIT2_Y_CRD); 
+                    break;
+
+                    case 4:
+                        mlcd.displayJpgImageCoordinate(COMMON_BLUE5_IMG_PATH, MEASURE_DIGIT3_X_CRD, MEASURE_DIGIT3_Y_CRD); 
+                    break;
+                }
+            break;
+            
+            case 6:
+                switch(display_cnt){
+                    case 1:
+                        mlcd.displayJpgImageCoordinate(COMMON_BLUE6_IMG_PATH, MEASURE_DECIMAL_X_CRD, MEASURE_DECIMAL_Y_CRD);                    
+                    break;
+
+                    case 2:
+                        mlcd.displayJpgImageCoordinate(COMMON_BLUE6_IMG_PATH, MEASURE_DIGIT1_X_CRD, MEASURE_DIGIT1_Y_CRD); 
+                    break;
+
+                    case 3:
+                        mlcd.displayJpgImageCoordinate(COMMON_BLUE6_IMG_PATH, MEASURE_DIGIT2_X_CRD, MEASURE_DIGIT2_Y_CRD); 
+                    break;
+
+                    case 4:
+                        mlcd.displayJpgImageCoordinate(COMMON_BLUE6_IMG_PATH, MEASURE_DIGIT3_X_CRD, MEASURE_DIGIT3_Y_CRD); 
+                    break;
+                }
+            break;
+
+            case 7:
+                switch(display_cnt){
+                    case 1:
+                        mlcd.displayJpgImageCoordinate(COMMON_BLUE7_IMG_PATH, MEASURE_DECIMAL_X_CRD, MEASURE_DECIMAL_Y_CRD);                    
+                    break;
+
+                    case 2:
+                        mlcd.displayJpgImageCoordinate(COMMON_BLUE7_IMG_PATH, MEASURE_DIGIT1_X_CRD, MEASURE_DIGIT1_Y_CRD); 
+                    break;
+
+                    case 3:
+                        mlcd.displayJpgImageCoordinate(COMMON_BLUE7_IMG_PATH, MEASURE_DIGIT2_X_CRD, MEASURE_DIGIT2_Y_CRD); 
+                    break;
+
+                    case 4:
+                        mlcd.displayJpgImageCoordinate(COMMON_BLUE7_IMG_PATH, MEASURE_DIGIT3_X_CRD, MEASURE_DIGIT3_Y_CRD); 
+                    break;
+                }
+            break;
+            
+            case 8:
+                switch(display_cnt){
+                    case 1:
+                        mlcd.displayJpgImageCoordinate(COMMON_BLUE8_IMG_PATH, MEASURE_DECIMAL_X_CRD, MEASURE_DECIMAL_Y_CRD);                    
+                    break;
+
+                    case 2:
+                        mlcd.displayJpgImageCoordinate(COMMON_BLUE8_IMG_PATH, MEASURE_DIGIT1_X_CRD, MEASURE_DIGIT1_Y_CRD); 
+                    break;
+
+                    case 3:
+                        mlcd.displayJpgImageCoordinate(COMMON_BLUE8_IMG_PATH, MEASURE_DIGIT2_X_CRD, MEASURE_DIGIT2_Y_CRD); 
+                    break;
+
+                    case 4:
+                        mlcd.displayJpgImageCoordinate(COMMON_BLUE8_IMG_PATH, MEASURE_DIGIT3_X_CRD, MEASURE_DIGIT3_Y_CRD); 
+                    break;
+                }
+            break;
+
+            case 9:
+                switch(display_cnt){
+                    case 1:
+                        mlcd.displayJpgImageCoordinate(COMMON_BLUE9_IMG_PATH, MEASURE_DECIMAL_X_CRD, MEASURE_DECIMAL_Y_CRD);                    
+                    break;
+
+                    case 2:
+                        mlcd.displayJpgImageCoordinate(COMMON_BLUE9_IMG_PATH, MEASURE_DIGIT1_X_CRD, MEASURE_DIGIT1_Y_CRD); 
+                    break;
+
+                    case 3:
+                        mlcd.displayJpgImageCoordinate(COMMON_BLUE9_IMG_PATH, MEASURE_DIGIT2_X_CRD, MEASURE_DIGIT2_Y_CRD); 
+                    break;
+
+                    case 4:
+                        mlcd.displayJpgImageCoordinate(COMMON_BLUE9_IMG_PATH, MEASURE_DIGIT3_X_CRD, MEASURE_DIGIT3_Y_CRD); 
+                    break;
+                }
+            break;
+        
+        }
+        measurement_distance = measurement_distance / 10;
+    }
+    mlcd.displayJpgImageCoordinate(COMMON_BLUEDOT_IMG_PATH, MEASURE_DOT_X_CRD, MEASURE_DOT_Y_CRD);
+    mlcd.displayJpgImageCoordinate(MEASURE_CM_IMG_PATH, MEASURE_CM_X_CRD, MEASURE_CM_Y_CRD); 
+
 }
 
 void AppControl::displayDateInit()
@@ -287,7 +504,23 @@ void AppControl::controlApplication()
                     }
                     setBtnAllFlgFalse();
                 }
-
+                else if(m_flag_btnB_is_pressed == true) {
+                    switch (getFocusState()) {
+                        case MENU_WBGT:
+                            break;
+                        
+                        case MENU_MUSIC:
+                            break;
+                        
+                        case MENU_MEASURE:
+                            setStateMachine(MEASURE, ENTRY);
+                            break;
+                        
+                        case MENU_DATE:
+                            break;
+                    }
+                    setBtnAllFlgFalse();
+                }
                 break;
 
             case EXIT:
@@ -356,12 +589,22 @@ void AppControl::controlApplication()
 
             switch (getAction()) {
             case ENTRY:
+                displayMeasureInit();
+                setStateMachine(MEASURE, DO);
                 break;
 
             case DO:
+                if(m_flag_btnB_is_pressed == true) {
+                    setStateMachine(MEASURE, EXIT);
+                    setBtnAllFlgFalse();
+                }
+                delay(250);
+                displayMeasureDistance();
                 break;
 
             case EXIT:
+                setStateMachine(MENU, ENTRY);
+                setFocusState(MENU_WBGT);
                 break;
 
             default:
