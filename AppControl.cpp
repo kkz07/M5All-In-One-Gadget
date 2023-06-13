@@ -557,22 +557,39 @@ void AppControl::displayTempHumiIndex()
 
 void AppControl::displayMusicInit()
 {
+    displayMusicStop();
+    displayMusicTitle();
 }
 
 void AppControl::displayMusicStop()
 {
+    mlcd.clearDisplay();
+    mlcd.fillBackgroundWhite();
+    mlcd.displayJpgImageCoordinate(MUSIC_NOWSTOPPING_IMG_PATH, MUSIC_NOTICE_X_CRD, MUSIC_NOTICE_Y_CRD);
+    mlcd.displayJpgImageCoordinate(COMMON_BUTTON_PLAY_IMG_PATH, MUSIC_PLAY_X_CRD, MUSIC_PLAY_Y_CRD);
+    mlcd.displayJpgImageCoordinate(COMMON_BUTTON_BACK_IMG_PATH, MUSIC_BACK_X_CRD, MUSIC_BACK_Y_CRD);
+    mlcd.displayJpgImageCoordinate(COMMON_BUTTON_NEXT_IMG_PATH, MUSIC_NEXT_X_CRD, MUSIC_NEXT_Y_CRD);
 }
 
 void AppControl::displayMusicTitle()
 {
+    mlcd.displayText(mmplay.getTitle(), MUSIC_TITLE_X_CRD, MUSIC_TITLE_Y_CRD);
 }
 
 void AppControl::displayNextMusic()
 {
+    mmplay.selectNextMusic();
+    displayMusicStop();
+    displayMusicTitle();
 }
 
 void AppControl::displayMusicPlay()
 {
+    mlcd.clearDisplay();
+    mlcd.fillBackgroundWhite();
+    mlcd.displayJpgImageCoordinate(MUSIC_NOWPLAYING_IMG_PATH, MUSIC_NOTICE_X_CRD, MUSIC_NOTICE_Y_CRD);
+    mlcd.displayJpgImageCoordinate(COMMON_BUTTON_STOP_IMG_PATH, MUSIC_STOP_X_CRD, MUSIC_STOP_Y_CRD);
+    displayMusicTitle();
 }
 
 void AppControl::displayMeasureInit()
@@ -814,6 +831,9 @@ void AppControl::displayDateUpdate()
 
 void AppControl::controlApplication()
 {
+    mmplay.init();
+    bool play_flg;
+
     while (1) {
 
         switch (getState()) {
@@ -827,7 +847,6 @@ void AppControl::controlApplication()
                 */
                 displayTitleInit();
                 setStateMachine(TITLE, DO);
-
                 break;
 
             case DO:
@@ -913,6 +932,7 @@ void AppControl::controlApplication()
                             break;
                         
                         case MENU_MUSIC:
+                            setStateMachine(MUSIC_STOP, ENTRY);
                             break;
                         
                         case MENU_MEASURE:
@@ -965,12 +985,31 @@ void AppControl::controlApplication()
         case MUSIC_STOP:
             switch (getAction()) {
             case ENTRY:
+                displayMusicInit();
+                setStateMachine(MUSIC_STOP, DO);
                 break;
 
             case DO:
+                if(m_flag_btnA_is_pressed || m_flag_btnB_is_pressed){
+                    setStateMachine(MUSIC_STOP, EXIT);
+                }
+                else if(m_flag_btnC_is_pressed == true) {
+                    displayNextMusic();
+                    setBtnAllFlgFalse();
+                }
                 break;
 
             case EXIT:
+                if(m_flag_btnA_is_pressed == true){
+                    setStateMachine(MUSIC_PLAY, ENTRY);
+                    setBtnAllFlgFalse();
+
+                }
+                else if(m_flag_btnB_is_pressed == true) {
+                    setStateMachine(MENU, ENTRY);
+                    setBtnAllFlgFalse();
+                    setFocusState(MENU_WBGT);
+                }
                 break;
 
             default:
@@ -983,12 +1022,29 @@ void AppControl::controlApplication()
 
             switch (getAction()) {
             case ENTRY:
+                displayMusicPlay();
+                mmplay.prepareMP3();
+                setStateMachine(MUSIC_PLAY, DO);
+                playflg = true;
                 break;
 
             case DO:
+                while(play_flg){
+                    play_flg = mmplay.playMP3();
+
+                    if(m_flag_btnA_is_pressed){
+                        setBtnAllFlgFalse();
+                        break;
+                    }
+                }
+
+                setStateMachine(MUSIC_PLAY, EXIT);
+                mmplay.stopMP3();
+
                 break;
 
             case EXIT:
+                setStateMachine(MUSIC_STOP, ENTRY);
                 break;
 
             default:

@@ -14,7 +14,7 @@ File entry;
 
 void MdMusicPlayer::init()
 {
-    pinMode(10, OUTPUT);
+    // pinMode(10, OUTPUT);
 
     SD.begin();
     musicfolder = SD.open("/music");
