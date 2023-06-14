@@ -823,10 +823,18 @@ void AppControl::displayMeasureDistance()
 
 void AppControl::displayDateInit()
 {
+    mlcd.clearDisplay();
+    mlcd.fillBackgroundWhite();
+    mlcd.displayJpgImageCoordinate(DATE_NOTICE_IMG_PATH, DATE_NOTICE_X_CRD, DATE_NOTICE_Y_CRD);
+    displayDateUpdate();
 }
 
 void AppControl::displayDateUpdate()
 {
+    mlcd.displayJpgImageCoordinate(DATE_NOTICE_IMG_PATH, DATE_NOTICE_X_CRD, DATE_NOTICE_Y_CRD);
+    mlcd.displayDateText(mdtime.readDate(), DATE_YYYYMMDD_X_CRD, DATE_YYYYMMDD_Y_CRD);
+    mlcd.displayDateText(mdtime.readTime(), DATE_HHmmSS_X_CRD, DATE_HHmmSS_Y_CRD);
+    mlcd.displayJpgImageCoordinate(COMMON_BUTTON_BACK_IMG_PATH, DATE_BACK_X_CRD, DATE_BACK_Y_CRD);
 }
 
 void AppControl::controlApplication()
@@ -940,6 +948,7 @@ void AppControl::controlApplication()
                             break;
                         
                         case MENU_DATE:
+                            setStateMachine(DATE, ENTRY);
                             break;
                     }
                     setBtnAllFlgFalse();
@@ -1025,7 +1034,7 @@ void AppControl::controlApplication()
                 displayMusicPlay();
                 mmplay.prepareMP3();
                 setStateMachine(MUSIC_PLAY, DO);
-                playflg = true;
+                play_flg = true;
                 break;
 
             case DO:
@@ -1085,12 +1094,22 @@ void AppControl::controlApplication()
 
             switch (getAction()) {
             case ENTRY:
+                displayDateInit();
+                setStateMachine(DATE, DO);
                 break;
 
             case DO:
+                if(m_flag_btnB_is_pressed == true) {
+                    setStateMachine(DATE, EXIT);
+                    setBtnAllFlgFalse();
+                }
+                delay(100);
+                displayDateUpdate();
                 break;
 
             case EXIT:
+                setStateMachine(MENU, ENTRY);
+                setFocusState(MENU_WBGT);
                 break;
 
             default:

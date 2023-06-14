@@ -162,6 +162,14 @@
 
 
 // Date jpg image coordinate
+#define DATE_NOTICE_X_CRD 0
+#define DATE_NOTICE_Y_CRD 0
+#define DATE_YYYYMMDD_X_CRD 10
+#define DATE_YYYYMMDD_Y_CRD 100
+#define DATE_HHmmSS_X_CRD 40
+#define DATE_HHmmSS_Y_CRD 150
+#define DATE_BACK_X_CRD 120
+#define DATE_BACK_Y_CRD 200
 
 typedef enum {
     TITLE,
