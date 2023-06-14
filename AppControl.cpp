@@ -853,6 +853,7 @@ void AppControl::controlApplication()
                 ** タイトル画面表示の関数はdisplayTitleInit()である。
                 ** この関数の中身はまだ何もないので、この関数にタイトル画面表示処理を書いてみよう。
                 */
+                Serial.println("TITLE ENTRY");
                 displayTitleInit();
                 setStateMachine(TITLE, DO);
                 break;
@@ -862,11 +863,12 @@ void AppControl::controlApplication()
                     setStateMachine(TITLE, EXIT);
                     setBtnAllFlgFalse();
                 }
-
+                Serial.println("TITLE DO");
                 break;
 
             case EXIT:
                 setStateMachine(MENU, ENTRY);
+                Serial.println("TITLE EXIT");
                 break;
 
             default:
@@ -881,10 +883,12 @@ void AppControl::controlApplication()
             case ENTRY:
                 displayMenuInit();
                 setStateMachine(MENU, DO);
+                Serial.println("MENU ENTRY");
 
                 break;
 
             case DO:
+                Serial.println("MENU DO");
                 if(m_flag_btnA_is_pressed == true){
                     switch (getFocusState()) {
                         case MENU_WBGT:
@@ -934,28 +938,30 @@ void AppControl::controlApplication()
                     setBtnAllFlgFalse();
                 }
                 else if(m_flag_btnB_is_pressed == true) {
-                    switch (getFocusState()) {
-                        case MENU_WBGT:
-                            setStateMachine(WBGT, ENTRY);
-                            break;
-                        
-                        case MENU_MUSIC:
-                            setStateMachine(MUSIC_STOP, ENTRY);
-                            break;
-                        
-                        case MENU_MEASURE:
-                            setStateMachine(MEASURE, ENTRY);
-                            break;
-                        
-                        case MENU_DATE:
-                            setStateMachine(DATE, ENTRY);
-                            break;
-                    }
+                    setStateMachine(MENU, EXIT);
                     setBtnAllFlgFalse();
                 }
                 break;
 
             case EXIT:
+                Serial.println("MENU EXIT");
+                switch (getFocusState()) {
+                    case MENU_WBGT:
+                        setStateMachine(WBGT, ENTRY);
+                    break;
+                        
+                    case MENU_MUSIC:
+                        setStateMachine(MUSIC_STOP, ENTRY);
+                    break;
+                        
+                    case MENU_MEASURE:
+                        setStateMachine(MEASURE, ENTRY);
+                    break;
+                        
+                    case MENU_DATE:
+                        setStateMachine(DATE, ENTRY);
+                    break;
+                }
 
             default:
                 break;
@@ -967,11 +973,13 @@ void AppControl::controlApplication()
 
             switch (getAction()) {
             case ENTRY:
+                Serial.println("WBGT ENTRY");
                 displayWBGTInit();
                 setStateMachine(WBGT, DO);
                 break;
 
             case DO:
+                Serial.println("WBGT DO");
                 if(m_flag_btnB_is_pressed == true) {
                     setStateMachine(WBGT, EXIT);
                     setBtnAllFlgFalse();
@@ -983,6 +991,7 @@ void AppControl::controlApplication()
             case EXIT:
                 setStateMachine(MENU, ENTRY);
                 setFocusState(MENU_WBGT);
+                Serial.println("WBGT EXIT");
                 break;
 
             default:
@@ -994,11 +1003,13 @@ void AppControl::controlApplication()
         case MUSIC_STOP:
             switch (getAction()) {
             case ENTRY:
+                Serial.println("MUSIC_STOP ENTRY");
                 displayMusicInit();
                 setStateMachine(MUSIC_STOP, DO);
                 break;
 
             case DO:
+                Serial.println("MUSIC_STOP DO");
                 if(m_flag_btnA_is_pressed || m_flag_btnB_is_pressed){
                     setStateMachine(MUSIC_STOP, EXIT);
                 }
@@ -1009,6 +1020,7 @@ void AppControl::controlApplication()
                 break;
 
             case EXIT:
+                Serial.println("MUSIC_STOP EXIT");
                 if(m_flag_btnA_is_pressed == true){
                     setStateMachine(MUSIC_PLAY, ENTRY);
                     setBtnAllFlgFalse();
@@ -1031,6 +1043,7 @@ void AppControl::controlApplication()
 
             switch (getAction()) {
             case ENTRY:
+                Serial.println("MUSIC_PLAY ENTRY");
                 displayMusicPlay();
                 mmplay.prepareMP3();
                 setStateMachine(MUSIC_PLAY, DO);
@@ -1038,6 +1051,7 @@ void AppControl::controlApplication()
                 break;
 
             case DO:
+                Serial.println("MUSIC_PLAY DO");
                 while(play_flg){
                     play_flg = mmplay.playMP3();
 
@@ -1053,6 +1067,7 @@ void AppControl::controlApplication()
                 break;
 
             case EXIT:
+                Serial.println("MUSIC_PLAY EXIT");
                 setStateMachine(MUSIC_STOP, ENTRY);
                 break;
 
@@ -1066,11 +1081,13 @@ void AppControl::controlApplication()
 
             switch (getAction()) {
             case ENTRY:
+                Serial.println("MEASURE ENTRY");
                 displayMeasureInit();
                 setStateMachine(MEASURE, DO);
                 break;
 
             case DO:
+                Serial.println("MEASURE DO");
                 if(m_flag_btnB_is_pressed == true) {
                     setStateMachine(MEASURE, EXIT);
                     setBtnAllFlgFalse();
@@ -1080,6 +1097,7 @@ void AppControl::controlApplication()
                 break;
 
             case EXIT:
+                Serial.println("MEASURE EXIT");
                 setStateMachine(MENU, ENTRY);
                 setFocusState(MENU_WBGT);
                 break;
@@ -1094,11 +1112,13 @@ void AppControl::controlApplication()
 
             switch (getAction()) {
             case ENTRY:
+                Serial.println("DATE ENTRY");
                 displayDateInit();
                 setStateMachine(DATE, DO);
                 break;
 
             case DO:
+                Serial.println("DATE DO");
                 if(m_flag_btnB_is_pressed == true) {
                     setStateMachine(DATE, EXIT);
                     setBtnAllFlgFalse();
@@ -1108,6 +1128,7 @@ void AppControl::controlApplication()
                 break;
 
             case EXIT:
+                Serial.println("DATE EXIT");
                 setStateMachine(MENU, ENTRY);
                 setFocusState(MENU_WBGT);
                 break;
