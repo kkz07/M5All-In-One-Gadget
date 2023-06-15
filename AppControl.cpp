@@ -170,177 +170,22 @@ void AppControl::displayTempHumiIndex()
     mlcd.displayJpgImageCoordinate(WBGT_TEMPERATURE_IMG_PATH, WBGT_TEMPERATURE_X_CRD, WBGT_TEMPERATURE_Y_CRD);
 
     for(int display_cnt = 1; display_cnt <= 3; display_cnt++){
-        switch(tenfold_temperature % divisor){
-            case 0:
-                switch(display_cnt){
-                    case 1:
-                        mlcd.displayJpgImageCoordinate(COMMON_ORANGE0_IMG_PATH, WBGT_T1DECIMAL_X_CRD, WBGT_T1DECIMAL_Y_CRD);                    
-                    break;
-
-                    case 2:
-                        mlcd.displayJpgImageCoordinate(COMMON_ORANGE0_IMG_PATH, WBGT_T1DIGIT_X_CRD, WBGT_T1DIGIT_Y_CRD); 
-                    break;
-
-                    case 3:
-                        mlcd.displayJpgImageCoordinate(COMMON_ORANGEFILLWHITE_IMG_PATH, WBGT_T2DIGIT_X_CRD, WBGT_T2DIGIT_Y_CRD); 
-                    break;
-                }
-
-            break;
-
+        switch(display_cnt){
             case 1:
-                switch(display_cnt){
-                    case 1:
-                        mlcd.displayJpgImageCoordinate(COMMON_ORANGE1_IMG_PATH, WBGT_T1DECIMAL_X_CRD, WBGT_T1DECIMAL_Y_CRD);                    
-                    break;
-
-                    case 2:
-                        mlcd.displayJpgImageCoordinate(COMMON_ORANGE1_IMG_PATH, WBGT_T1DIGIT_X_CRD, WBGT_T1DIGIT_Y_CRD); 
-                    break;
-
-                    case 3:
-                        mlcd.displayJpgImageCoordinate(COMMON_ORANGE1_IMG_PATH, WBGT_T2DIGIT_X_CRD, WBGT_T2DIGIT_Y_CRD); 
-                    break;
-
-                }
-            break;
+                mlcd.displayJpgImageCoordinate(g_str_orange[tenfold_temperature % divisor], WBGT_T1DECIMAL_X_CRD, WBGT_T1DECIMAL_Y_CRD);                    
+                break;
 
             case 2:
-                switch(display_cnt){
-                    case 1:
-                        mlcd.displayJpgImageCoordinate(COMMON_ORANGE2_IMG_PATH, WBGT_T1DECIMAL_X_CRD, WBGT_T1DECIMAL_Y_CRD);                    
-                    break;
-
-                    case 2:
-                        mlcd.displayJpgImageCoordinate(COMMON_ORANGE2_IMG_PATH, WBGT_T1DIGIT_X_CRD, WBGT_T1DIGIT_Y_CRD); 
-                    break;
-
-                    case 3:
-                        mlcd.displayJpgImageCoordinate(COMMON_ORANGE2_IMG_PATH, WBGT_T2DIGIT_X_CRD, WBGT_T2DIGIT_Y_CRD); 
-                    break;
-
-                }
-            break;
+                mlcd.displayJpgImageCoordinate(g_str_orange[tenfold_temperature % divisor], WBGT_T1DIGIT_X_CRD, WBGT_T1DIGIT_Y_CRD); 
+                break;
 
             case 3:
-                switch(display_cnt){
-                    case 1:
-                        mlcd.displayJpgImageCoordinate(COMMON_ORANGE3_IMG_PATH, WBGT_T1DECIMAL_X_CRD, WBGT_T1DECIMAL_Y_CRD);                    
-                    break;
-
-                    case 2:
-                        mlcd.displayJpgImageCoordinate(COMMON_ORANGE3_IMG_PATH, WBGT_T1DIGIT_X_CRD, WBGT_T1DIGIT_Y_CRD); 
-                    break;
-
-                    case 3:
-                        mlcd.displayJpgImageCoordinate(COMMON_ORANGE3_IMG_PATH, WBGT_T2DIGIT_X_CRD, WBGT_T2DIGIT_Y_CRD); 
-                    break;
-
+                if(tenfold_temperature % divisor == 0){
+                    mlcd.displayJpgImageCoordinate(COMMON_ORANGEFILLWHITE_IMG_PATH, WBGT_T2DIGIT_X_CRD, WBGT_T2DIGIT_Y_CRD);
+                } else {
+                    mlcd.displayJpgImageCoordinate(g_str_orange[tenfold_temperature % divisor], WBGT_T2DIGIT_X_CRD, WBGT_T2DIGIT_Y_CRD); 
                 }
-            break;
-            
-            case 4:
-                switch(display_cnt){
-                    case 1:
-                        mlcd.displayJpgImageCoordinate(COMMON_ORANGE4_IMG_PATH, WBGT_T1DECIMAL_X_CRD, WBGT_T1DECIMAL_Y_CRD);                    
-                    break;
-
-                    case 2:
-                        mlcd.displayJpgImageCoordinate(COMMON_ORANGE4_IMG_PATH, WBGT_T1DIGIT_X_CRD, WBGT_T1DIGIT_Y_CRD); 
-                    break;
-
-                    case 3:
-                        mlcd.displayJpgImageCoordinate(COMMON_ORANGE4_IMG_PATH, WBGT_T2DIGIT_X_CRD, WBGT_T2DIGIT_Y_CRD); 
-                    break;
-
-                }
-            break;
-
-            case 5:
-                switch(display_cnt){
-                    case 1:
-                        mlcd.displayJpgImageCoordinate(COMMON_ORANGE5_IMG_PATH, WBGT_T1DECIMAL_X_CRD, WBGT_T1DECIMAL_Y_CRD);                    
-                    break;
-
-                    case 2:
-                        mlcd.displayJpgImageCoordinate(COMMON_ORANGE5_IMG_PATH, WBGT_T1DIGIT_X_CRD, WBGT_T1DIGIT_Y_CRD); 
-                    break;
-
-                    case 3:
-                        mlcd.displayJpgImageCoordinate(COMMON_ORANGE5_IMG_PATH, WBGT_T2DIGIT_X_CRD, WBGT_T2DIGIT_Y_CRD); 
-                    break;
-
-                }
-            break;
-            
-            case 6:
-                switch(display_cnt){
-                    case 1:
-                        mlcd.displayJpgImageCoordinate(COMMON_ORANGE6_IMG_PATH, WBGT_T1DECIMAL_X_CRD, WBGT_T1DECIMAL_Y_CRD);                    
-                    break;
-
-                    case 2:
-                        mlcd.displayJpgImageCoordinate(COMMON_ORANGE6_IMG_PATH, WBGT_T1DIGIT_X_CRD, WBGT_T1DIGIT_Y_CRD); 
-                    break;
-
-                    case 3:
-                        mlcd.displayJpgImageCoordinate(COMMON_ORANGE6_IMG_PATH, WBGT_T2DIGIT_X_CRD, WBGT_T2DIGIT_Y_CRD); 
-                    break;
-
-                }
-            break;
-
-            case 7:
-                switch(display_cnt){
-                    case 1:
-                        mlcd.displayJpgImageCoordinate(COMMON_ORANGE7_IMG_PATH, WBGT_T1DECIMAL_X_CRD, WBGT_T1DECIMAL_Y_CRD);                    
-                    break;
-
-                    case 2:
-                        mlcd.displayJpgImageCoordinate(COMMON_ORANGE7_IMG_PATH, WBGT_T1DIGIT_X_CRD, WBGT_T1DIGIT_Y_CRD); 
-                    break;
-
-                    case 3:
-                        mlcd.displayJpgImageCoordinate(COMMON_ORANGE7_IMG_PATH, WBGT_T2DIGIT_X_CRD, WBGT_T2DIGIT_Y_CRD); 
-                    break;
-
-                }
-            break;
-            
-            case 8:
-                switch(display_cnt){
-                    case 1:
-                        mlcd.displayJpgImageCoordinate(COMMON_ORANGE8_IMG_PATH, WBGT_T1DECIMAL_X_CRD, WBGT_T1DECIMAL_Y_CRD);                    
-                    break;
-
-                    case 2:
-                        mlcd.displayJpgImageCoordinate(COMMON_ORANGE8_IMG_PATH, WBGT_T1DIGIT_X_CRD, WBGT_T1DIGIT_Y_CRD); 
-                    break;
-
-                    case 3:
-                        mlcd.displayJpgImageCoordinate(COMMON_ORANGE8_IMG_PATH, WBGT_T2DIGIT_X_CRD, WBGT_T2DIGIT_Y_CRD); 
-                    break;
-
-                }
-            break;
-
-            case 9:
-                switch(display_cnt){
-                    case 1:
-                        mlcd.displayJpgImageCoordinate(COMMON_ORANGE9_IMG_PATH, WBGT_T1DECIMAL_X_CRD, WBGT_T1DECIMAL_Y_CRD);                    
-                    break;
-
-                    case 2:
-                        mlcd.displayJpgImageCoordinate(COMMON_ORANGE9_IMG_PATH, WBGT_T1DIGIT_X_CRD, WBGT_T1DIGIT_Y_CRD); 
-                    break;
-
-                    case 3:
-                        mlcd.displayJpgImageCoordinate(COMMON_ORANGE9_IMG_PATH, WBGT_T2DIGIT_X_CRD, WBGT_T2DIGIT_Y_CRD); 
-                    break;
-
-                }
-            break;
-        
+                break;
         }
         tenfold_temperature = tenfold_temperature / 10;
     }
@@ -351,177 +196,22 @@ void AppControl::displayTempHumiIndex()
     mlcd.displayJpgImageCoordinate(WBGT_HUMIDITY_IMG_PATH, WBGT_HUMIDITY_X_CRD, WBGT_HUMIDITY_Y_CRD);
 
     for(int display_cnt = 1; display_cnt <= 3; display_cnt++){
-        switch(tenfold_humidity % divisor){
-            case 0:
-                switch(display_cnt){
-                    case 1:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE0_IMG_PATH, WBGT_H1DECIMAL_X_CRD, WBGT_H1DECIMAL_Y_CRD);                    
-                    break;
-
-                    case 2:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE0_IMG_PATH, WBGT_H1DIGIT_X_CRD, WBGT_H1DIGIT_Y_CRD); 
-                    break;
-
-                    case 3:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUEFILLWHITE_IMG_PATH, WBGT_H2DIGIT_X_CRD, WBGT_H2DIGIT_Y_CRD); 
-                    break;
-                }
-
-            break;
-
+        switch(display_cnt){
             case 1:
-                switch(display_cnt){
-                    case 1:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE1_IMG_PATH, WBGT_H1DECIMAL_X_CRD, WBGT_H1DECIMAL_Y_CRD);                    
-                    break;
-
-                    case 2:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE1_IMG_PATH, WBGT_H1DIGIT_X_CRD, WBGT_H1DIGIT_Y_CRD); 
-                    break;
-
-                    case 3:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE1_IMG_PATH, WBGT_H2DIGIT_X_CRD, WBGT_H2DIGIT_Y_CRD); 
-                    break;
-
-                }
-            break;
+                mlcd.displayJpgImageCoordinate(g_str_blue[tenfold_humidity % divisor], WBGT_H1DECIMAL_X_CRD, WBGT_H1DECIMAL_Y_CRD);                    
+                break;
 
             case 2:
-                switch(display_cnt){
-                    case 1:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE2_IMG_PATH, WBGT_H1DECIMAL_X_CRD, WBGT_H1DECIMAL_Y_CRD);                    
-                    break;
-
-                    case 2:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE2_IMG_PATH, WBGT_H1DIGIT_X_CRD, WBGT_H1DIGIT_Y_CRD); 
-                    break;
-
-                    case 3:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE2_IMG_PATH, WBGT_H2DIGIT_X_CRD, WBGT_H2DIGIT_Y_CRD); 
-                    break;
-
-                }
-            break;
+                mlcd.displayJpgImageCoordinate(g_str_blue[tenfold_humidity % divisor], WBGT_H1DIGIT_X_CRD, WBGT_H1DIGIT_Y_CRD); 
+                break;
 
             case 3:
-                switch(display_cnt){
-                    case 1:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE3_IMG_PATH, WBGT_H1DECIMAL_X_CRD, WBGT_H1DECIMAL_Y_CRD);                    
-                    break;
-
-                    case 2:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE3_IMG_PATH, WBGT_H1DIGIT_X_CRD, WBGT_H1DIGIT_Y_CRD); 
-                    break;
-
-                    case 3:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE3_IMG_PATH, WBGT_H2DIGIT_X_CRD, WBGT_H2DIGIT_Y_CRD); 
-                    break;
-
+                if(tenfold_humidity % divisor == 0){
+                    mlcd.displayJpgImageCoordinate(COMMON_BLUEFILLWHITE_IMG_PATH, WBGT_H2DIGIT_X_CRD, WBGT_H2DIGIT_Y_CRD); 
+                } else {
+                    mlcd.displayJpgImageCoordinate(g_str_blue[tenfold_humidity % divisor], WBGT_H2DIGIT_X_CRD, WBGT_H2DIGIT_Y_CRD); 
                 }
-            break;
-            
-            case 4:
-                switch(display_cnt){
-                    case 1:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE4_IMG_PATH, WBGT_H1DECIMAL_X_CRD, WBGT_H1DECIMAL_Y_CRD);                    
-                    break;
-
-                    case 2:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE4_IMG_PATH, WBGT_H1DIGIT_X_CRD, WBGT_H1DIGIT_Y_CRD); 
-                    break;
-
-                    case 3:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE4_IMG_PATH, WBGT_H2DIGIT_X_CRD, WBGT_H2DIGIT_Y_CRD); 
-                    break;
-
-                }
-            break;
-
-            case 5:
-                switch(display_cnt){
-                    case 1:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE5_IMG_PATH, WBGT_H1DECIMAL_X_CRD, WBGT_H1DECIMAL_Y_CRD);                    
-                    break;
-
-                    case 2:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE5_IMG_PATH, WBGT_H1DIGIT_X_CRD, WBGT_H1DIGIT_Y_CRD); 
-                    break;
-
-                    case 3:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE5_IMG_PATH, WBGT_H2DIGIT_X_CRD, WBGT_H2DIGIT_Y_CRD); 
-                    break;
-
-                }
-            break;
-            
-            case 6:
-                switch(display_cnt){
-                    case 1:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE6_IMG_PATH, WBGT_H1DECIMAL_X_CRD, WBGT_H1DECIMAL_Y_CRD);                    
-                    break;
-
-                    case 2:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE6_IMG_PATH, WBGT_H1DIGIT_X_CRD, WBGT_H1DIGIT_Y_CRD); 
-                    break;
-
-                    case 3:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE6_IMG_PATH, WBGT_H2DIGIT_X_CRD, WBGT_H2DIGIT_Y_CRD); 
-                    break;
-
-                }
-            break;
-
-            case 7:
-                switch(display_cnt){
-                    case 1:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE7_IMG_PATH, WBGT_H1DECIMAL_X_CRD, WBGT_H1DECIMAL_Y_CRD);                    
-                    break;
-
-                    case 2:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE7_IMG_PATH, WBGT_H1DIGIT_X_CRD, WBGT_H1DIGIT_Y_CRD); 
-                    break;
-
-                    case 3:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE7_IMG_PATH, WBGT_H2DIGIT_X_CRD, WBGT_H2DIGIT_Y_CRD); 
-                    break;
-
-                }
-            break;
-            
-            case 8:
-                switch(display_cnt){
-                    case 1:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE8_IMG_PATH, WBGT_H1DECIMAL_X_CRD, WBGT_H1DECIMAL_Y_CRD);                    
-                    break;
-
-                    case 2:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE8_IMG_PATH, WBGT_H1DIGIT_X_CRD, WBGT_H1DIGIT_Y_CRD); 
-                    break;
-
-                    case 3:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE8_IMG_PATH, WBGT_H2DIGIT_X_CRD, WBGT_H2DIGIT_Y_CRD); 
-                    break;
-
-                }
-            break;
-
-            case 9:
-                switch(display_cnt){
-                    case 1:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE9_IMG_PATH, WBGT_H1DECIMAL_X_CRD, WBGT_H1DECIMAL_Y_CRD);                    
-                    break;
-
-                    case 2:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE9_IMG_PATH, WBGT_H1DIGIT_X_CRD, WBGT_H1DIGIT_Y_CRD); 
-                    break;
-
-                    case 3:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE9_IMG_PATH, WBGT_H2DIGIT_X_CRD, WBGT_H2DIGIT_Y_CRD); 
-                    break;
-
-                }
-            break;
-        
+                break;
         }
         tenfold_humidity = tenfold_humidity / 10;
     }
@@ -608,215 +298,34 @@ void AppControl::displayMeasureDistance()
     int divisor = 10;
 
     for(int display_cnt = 1; display_cnt <= 4; display_cnt++){
-        switch(measurement_distance % divisor){
-            case 0:
-                switch(display_cnt){
-                    case 1:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE0_IMG_PATH, MEASURE_DECIMAL_X_CRD, MEASURE_DECIMAL_Y_CRD);                    
-                    break;
-
-                    case 2:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE0_IMG_PATH, MEASURE_DIGIT1_X_CRD, MEASURE_DIGIT1_Y_CRD); 
-                    break;
-
-                    case 3:
-                        if((measurement_distance / divisor) % divisor == 0){
-                            mlcd.displayJpgImageCoordinate(COMMON_BLUEFILLWHITE_IMG_PATH, MEASURE_DIGIT2_X_CRD, MEASURE_DIGIT2_Y_CRD);
-                        } else {
-                            mlcd.displayJpgImageCoordinate(COMMON_BLUE0_IMG_PATH, MEASURE_DIGIT2_X_CRD, MEASURE_DIGIT2_Y_CRD);
-                        }
-                    break;
-
-                    case 4:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUEFILLWHITE_IMG_PATH, MEASURE_DIGIT3_X_CRD, MEASURE_DIGIT3_Y_CRD); 
-                    break;
-                }
-
-            break;
-
+        switch(display_cnt){
             case 1:
-                switch(display_cnt){
-                    case 1:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE1_IMG_PATH, MEASURE_DECIMAL_X_CRD, MEASURE_DECIMAL_Y_CRD);                    
-                    break;
-
-                    case 2:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE1_IMG_PATH, MEASURE_DIGIT1_X_CRD, MEASURE_DIGIT1_Y_CRD); 
-                    break;
-
-                    case 3:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE1_IMG_PATH, MEASURE_DIGIT2_X_CRD, MEASURE_DIGIT2_Y_CRD); 
-                    break;
-
-                    case 4:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE1_IMG_PATH, MEASURE_DIGIT3_X_CRD, MEASURE_DIGIT3_Y_CRD); 
-                    break;
-                }
-            break;
+                mlcd.displayJpgImageCoordinate(g_str_blue[measurement_distance % divisor], MEASURE_DECIMAL_X_CRD, MEASURE_DECIMAL_Y_CRD);                    
+                break;
 
             case 2:
-                switch(display_cnt){
-                    case 1:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE2_IMG_PATH, MEASURE_DECIMAL_X_CRD, MEASURE_DECIMAL_Y_CRD);                    
-                    break;
-
-                    case 2:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE2_IMG_PATH, MEASURE_DIGIT1_X_CRD, MEASURE_DIGIT1_Y_CRD); 
-                    break;
-
-                    case 3:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE2_IMG_PATH, MEASURE_DIGIT2_X_CRD, MEASURE_DIGIT2_Y_CRD); 
-                    break;
-
-                    case 4:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE2_IMG_PATH, MEASURE_DIGIT3_X_CRD, MEASURE_DIGIT3_Y_CRD); 
-                    break;
-                }
-            break;
+                mlcd.displayJpgImageCoordinate(g_str_blue[measurement_distance % divisor], MEASURE_DIGIT1_X_CRD, MEASURE_DIGIT1_Y_CRD); 
+                break;
 
             case 3:
-                switch(display_cnt){
-                    case 1:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE3_IMG_PATH, MEASURE_DECIMAL_X_CRD, MEASURE_DECIMAL_Y_CRD);                    
-                    break;
-
-                    case 2:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE3_IMG_PATH, MEASURE_DIGIT1_X_CRD, MEASURE_DIGIT1_Y_CRD); 
-                    break;
-
-                    case 3:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE3_IMG_PATH, MEASURE_DIGIT2_X_CRD, MEASURE_DIGIT2_Y_CRD); 
-                    break;
-
-                    case 4:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE3_IMG_PATH, MEASURE_DIGIT3_X_CRD, MEASURE_DIGIT3_Y_CRD); 
-                    break;
+                if((measurement_distance% divisor == 0) && ((measurement_distance / divisor) % divisor == 0)){
+                    mlcd.displayJpgImageCoordinate(COMMON_BLUEFILLWHITE_IMG_PATH, MEASURE_DIGIT2_X_CRD, MEASURE_DIGIT2_Y_CRD);
+                } else {
+                    mlcd.displayJpgImageCoordinate(g_str_blue[measurement_distance % divisor], MEASURE_DIGIT2_X_CRD, MEASURE_DIGIT2_Y_CRD);
                 }
-            break;
-            
+                break;
+
             case 4:
-                switch(display_cnt){
-                    case 1:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE4_IMG_PATH, MEASURE_DECIMAL_X_CRD, MEASURE_DECIMAL_Y_CRD);                    
-                    break;
-
-                    case 2:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE4_IMG_PATH, MEASURE_DIGIT1_X_CRD, MEASURE_DIGIT1_Y_CRD); 
-                    break;
-
-                    case 3:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE4_IMG_PATH, MEASURE_DIGIT2_X_CRD, MEASURE_DIGIT2_Y_CRD); 
-                    break;
-
-                    case 4:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE4_IMG_PATH, MEASURE_DIGIT3_X_CRD, MEASURE_DIGIT3_Y_CRD); 
-                    break;
+                if(measurement_distance% divisor == 0){
+                    mlcd.displayJpgImageCoordinate(COMMON_BLUEFILLWHITE_IMG_PATH, MEASURE_DIGIT3_X_CRD, MEASURE_DIGIT3_Y_CRD);
+                } else {
+                    mlcd.displayJpgImageCoordinate(g_str_blue[measurement_distance % divisor], MEASURE_DIGIT3_X_CRD, MEASURE_DIGIT3_Y_CRD); 
                 }
-            break;
-
-            case 5:
-                switch(display_cnt){
-                    case 1:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE5_IMG_PATH, MEASURE_DECIMAL_X_CRD, MEASURE_DECIMAL_Y_CRD);                    
-                    break;
-
-                    case 2:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE5_IMG_PATH, MEASURE_DIGIT1_X_CRD, MEASURE_DIGIT1_Y_CRD); 
-                    break;
-
-                    case 3:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE5_IMG_PATH, MEASURE_DIGIT2_X_CRD, MEASURE_DIGIT2_Y_CRD); 
-                    break;
-
-                    case 4:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE5_IMG_PATH, MEASURE_DIGIT3_X_CRD, MEASURE_DIGIT3_Y_CRD); 
-                    break;
-                }
-            break;
-            
-            case 6:
-                switch(display_cnt){
-                    case 1:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE6_IMG_PATH, MEASURE_DECIMAL_X_CRD, MEASURE_DECIMAL_Y_CRD);                    
-                    break;
-
-                    case 2:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE6_IMG_PATH, MEASURE_DIGIT1_X_CRD, MEASURE_DIGIT1_Y_CRD); 
-                    break;
-
-                    case 3:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE6_IMG_PATH, MEASURE_DIGIT2_X_CRD, MEASURE_DIGIT2_Y_CRD); 
-                    break;
-
-                    case 4:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE6_IMG_PATH, MEASURE_DIGIT3_X_CRD, MEASURE_DIGIT3_Y_CRD); 
-                    break;
-                }
-            break;
-
-            case 7:
-                switch(display_cnt){
-                    case 1:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE7_IMG_PATH, MEASURE_DECIMAL_X_CRD, MEASURE_DECIMAL_Y_CRD);                    
-                    break;
-
-                    case 2:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE7_IMG_PATH, MEASURE_DIGIT1_X_CRD, MEASURE_DIGIT1_Y_CRD); 
-                    break;
-
-                    case 3:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE7_IMG_PATH, MEASURE_DIGIT2_X_CRD, MEASURE_DIGIT2_Y_CRD); 
-                    break;
-
-                    case 4:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE7_IMG_PATH, MEASURE_DIGIT3_X_CRD, MEASURE_DIGIT3_Y_CRD); 
-                    break;
-                }
-            break;
-            
-            case 8:
-                switch(display_cnt){
-                    case 1:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE8_IMG_PATH, MEASURE_DECIMAL_X_CRD, MEASURE_DECIMAL_Y_CRD);                    
-                    break;
-
-                    case 2:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE8_IMG_PATH, MEASURE_DIGIT1_X_CRD, MEASURE_DIGIT1_Y_CRD); 
-                    break;
-
-                    case 3:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE8_IMG_PATH, MEASURE_DIGIT2_X_CRD, MEASURE_DIGIT2_Y_CRD); 
-                    break;
-
-                    case 4:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE8_IMG_PATH, MEASURE_DIGIT3_X_CRD, MEASURE_DIGIT3_Y_CRD); 
-                    break;
-                }
-            break;
-
-            case 9:
-                switch(display_cnt){
-                    case 1:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE9_IMG_PATH, MEASURE_DECIMAL_X_CRD, MEASURE_DECIMAL_Y_CRD);                    
-                    break;
-
-                    case 2:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE9_IMG_PATH, MEASURE_DIGIT1_X_CRD, MEASURE_DIGIT1_Y_CRD); 
-                    break;
-
-                    case 3:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE9_IMG_PATH, MEASURE_DIGIT2_X_CRD, MEASURE_DIGIT2_Y_CRD); 
-                    break;
-
-                    case 4:
-                        mlcd.displayJpgImageCoordinate(COMMON_BLUE9_IMG_PATH, MEASURE_DIGIT3_X_CRD, MEASURE_DIGIT3_Y_CRD); 
-                    break;
-                }
-            break;
-        
+                break;
         }
         measurement_distance = measurement_distance / 10;
     }
+
     mlcd.displayJpgImageCoordinate(COMMON_BLUEDOT_IMG_PATH, MEASURE_DOT_X_CRD, MEASURE_DOT_Y_CRD);
     mlcd.displayJpgImageCoordinate(MEASURE_CM_IMG_PATH, MEASURE_CM_X_CRD, MEASURE_CM_Y_CRD); 
 
