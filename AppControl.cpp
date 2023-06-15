@@ -579,7 +579,8 @@ void AppControl::displayMusicTitle()
 void AppControl::displayNextMusic()
 {
     mmplay.selectNextMusic();
-    displayMusicStop();
+    // displayMusicStop();
+    mlcd.displayText("                    ", MUSIC_TITLE_X_CRD, MUSIC_TITLE_Y_CRD);
     displayMusicTitle();
 }
 
