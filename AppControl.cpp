@@ -494,7 +494,7 @@ void AppControl::controlApplication()
                     setStateMachine(WBGT, EXIT);
                     setBtnAllFlgFalse();
                 }
-                delay(1000);
+                delay(100);
                 displayTempHumiIndex();
                 break;
 
